@@ -11,7 +11,7 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-            string[] lines = File.ReadAllLines(@"C:\Users\user\source\repos\ConsoleApp3\123\ConsoleApp4\ConsoleApp4\bin\Debug\input.txt");
+            string[] lines = File.ReadAllLines(@"C:\Users\user\source\repos\PP2\Week2\Task1\Task1\bin\Debug\a.txt");
 
             foreach (string line in lines)
             {
