@@ -14,10 +14,10 @@ namespace Task4
             string fileName = "POP.txt"; // имя файла который я хочу создать
             string PathString = @"C:\Users\user\Desktop"; // и где я его хочу создать
             PathString = Path.Combine(PathString, fileName); // нужно скомбинировать их пути
-            FileStream fs = File.Create(PathString); // и создаем файц
+            FileStream fs = File.Create(PathString); // и создаем файл
             fs.Close(); // нужно чтобы прекратил работу
 
-            string PathString2 = @"C:\Users\user\Desktop\C#"; // путь куда я должен я скопировать
+            string PathString2 = @"C:\Users\user\Desktop\C#"; // путь куда я должен скопировать
 
             string destFile = Path.Combine(PathString2, fileName); // скомбинируем путь
             File.Copy(PathString, destFile, true); // копируем туда
