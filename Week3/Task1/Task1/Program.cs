@@ -11,8 +11,8 @@ namespace Part2
     {
         static void Main(string[] args)
         {
-            far FarManager = new far();
-            FarManager.Start(@"C:\Users\user\source\repos\PP2");
+            far FarManager = new far(); //создаем файл менеджер
+            FarManager.Start(@"C:\Users\user\source\repos\PP2");//указываем путь
         }
     }
     class far

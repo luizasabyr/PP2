@@ -14,7 +14,7 @@ namespace Task1
             string s = Console.ReadLine();//ввод количество элементов в массиве
             int a = int.Parse(s); //превращаем количество элементов в массиве со стринга в int
             int[] array = new int[a]; //создаем новый массив 
-            string[] arr = Console.ReadLine().Split(); //ввод элементов массива 
+            string[] arr = Console.ReadLine().Split(); //ввод элементов массива разбивая строку  на подстроки  
 
             for (int i = 0; i < a; i++)//пробегаемся по массиву
             {
