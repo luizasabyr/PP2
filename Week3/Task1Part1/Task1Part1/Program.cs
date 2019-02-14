@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace Part2
+namespace Task1Part1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            far FarManager = new far(); //создаем файл менеджер
-            FarManager.Start(@"C:\Users\user\source\repos\PP2");//указываем путь
+            far FarManager = new far();
+            FarManager.Start(@"C:\Users\user\source\repos\PP2");
         }
     }
     class far
