@@ -5,142 +5,82 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-
-
-namespace Task1
+namespace Part2
 {
-    class FarManager
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            far FarManager = new far();
+            FarManager.Start(@"C:\Users\user\source\repos\PP2");
+        }
+    }
+    class far
     {
         public int cursor;
-        public string path;
-        public int sz;
+        public int size;
         public bool ok;
-        DirectoryInfo directory = null;
-        FileSystemInfo currentFs = null;
-
-        public FarManager()
+        public far()
         {
             cursor = 0;
-        }
-
-        public FarManager(string path)
-        {
-            this.path = path;
-            cursor = 0;
-            directory = new DirectoryInfo(path);
-            sz = directory.GetFileSystemInfos().Length;
             ok = true;
-        }
-
-        public void Color(FileSystemInfo fs, int index)
-        {
-            if (cursor == index)
-            {
-                Console.BackgroundColor = ConsoleColor.White;
-                Console.ForegroundColor = ConsoleColor.Black;
-                currentFs = fs;
-            }
-            else if (fs.GetType() == typeof(DirectoryInfo))
-            {
-                Console.BackgroundColor = ConsoleColor.Green;
-                Console.ForegroundColor = ConsoleColor.Magenta;
-            }
-            else
-            {
-                Console.BackgroundColor = ConsoleColor.Blue;
-                Console.ForegroundColor = ConsoleColor.Yellow;
-            }
-        }
-
-        public void Show()
-        {
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.Clear();
-            directory = new DirectoryInfo(path);
-            FileSystemInfo[] fs = directory.GetFileSystemInfos();
-            for (int i = 0, k = 0; i < fs.Length; i++)
-            {
-                if (ok == false && fs[i].Name[0] == '.')
-                {
-                    continue;
-                }
-                Color(fs[i], k);
-                Console.WriteLine(fs[i].Name);
-                k++;
-            }
         }
         public void Up()
         {
             cursor--;
             if (cursor < 0)
-                cursor = sz - 1;
+                cursor = size - 1;
         }
         public void Down()
         {
             cursor++;
-            if (cursor == sz)
+            if (cursor == size)
                 cursor = 0;
         }
-
-        public void CalcSz()
+        public void Color(FileSystemInfo file, int index)
         {
-            directory = new DirectoryInfo(path);
-            FileSystemInfo[] fs = directory.GetFileSystemInfos();
-            sz = fs.Length;
-            if (ok == false)
-                for (int i = 0; i < fs.Length; i++)
-                    if (fs[i].Name[0] == '.')
-                        sz--;
-        }
-
-        public void Start()
-        {
-            ConsoleKeyInfo consoleKey = Console.ReadKey();
-            while (consoleKey.Key != ConsoleKey.Escape)
+            if (index == cursor)
+                Console.BackgroundColor = ConsoleColor.Red;
+            else if (file.GetType() == typeof(DirectoryInfo))
             {
-                CalcSz();
-                Show();
-                consoleKey = Console.ReadKey();
-                if (consoleKey.Key == ConsoleKey.UpArrow)
-                    Up();
-                if (consoleKey.Key == ConsoleKey.DownArrow)
-                    Down();
-                if (consoleKey.Key == ConsoleKey.RightArrow)
-                {
-                    ok = false;
-                    cursor = 0;
-                }
-                if (consoleKey.Key == ConsoleKey.LeftArrow)
-                {
-                    cursor = 0;
-                    ok = true;
-                }
-                if (consoleKey.Key == ConsoleKey.Enter)
-                {
-                    if (currentFs.GetType() == typeof(DirectoryInfo))
-                    {
-
-                        cursor = 0;
-                        path = currentFs.FullName;
-                    }
-                }
-                if (consoleKey.Key == ConsoleKey.Backspace)
-                {
-                    cursor = 0;
-                    path = directory.Parent.FullName;
-                }
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.BackgroundColor = ConsoleColor.Black;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.BackgroundColor = ConsoleColor.Black;
             }
         }
-
-    }
-
-    class Program
-    {
-        static void Main(string[] args)
+        public void Show(string path)
         {
-            string path = @"C:\Users\user\source\repos\PP2";
-            FarManager farManager = new FarManager(path);
-            farManager.Start();
+            DirectoryInfo directory = new DirectoryInfo(path);
+            FileSystemInfo[] files = directory.GetFileSystemInfos();
+            size = files.Length;
+            int index = 0;
+            foreach (FileSystemInfo fs in files)
+            {
+                Color(fs, index);
+                Console.WriteLine(fs.Name);
+                index++;
+            }
+        }
+        public void Start(string path)
+        {
+            ConsoleKeyInfo key = Console.ReadKey();
+            FileSystemInfo fs = null;
+            while (key.Key != ConsoleKey.E)
+            {
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.Clear();
+                Show(path);
+                key = Console.ReadKey();
+                if (key.Key == ConsoleKey.UpArrow)
+                    Up();
+                else if (key.Key == ConsoleKey.DownArrow)
+                    Down();
+
+            }
         }
     }
 }
