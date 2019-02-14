@@ -29,17 +29,12 @@ namespace Task2
                 return false;
             }
         }
-        // создаем функцию, чтобы прочесть числа из файла
-        public static string Read()
-        {
-            StreamReader sr = new StreamReader("input.txt");
-            string s = sr.ReadToEnd();
-            sr.Close();
-            return s;
-        }
+        
         static void Main(string[] args)
         {
-            String s = Read();
+             StreamReader sr = new StreamReader("input.txt"); //прочтем данные из файла 
+            string s = sr.ReadToEnd();
+            sr.Close();
             string[] arr = s.Split();//разделяем строку на подстроки 
             
             StreamWriter sw = new StreamWriter("output.txt");// выводим все простые числа в другом файле
