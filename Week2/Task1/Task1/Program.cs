@@ -11,26 +11,26 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-            string[] lines = File.ReadAllLines(@"C:\Users\user\source\repos\PP2\Week2\Task1\Task1\bin\Debug\a.txt");
+            string[] lines = File.ReadAllLines("a.txt");//считываем с файла данные
 
-            foreach (string line in lines)
+            foreach (string line in lines)//пробегаемся по строке 
             {
-                char[] charArray = line.ToCharArray();
-                for (int i = 0; i < 1; i++)
+                char[] charArray = line.ToCharArray();//копирует знаки данного экземпляра в массив знаков юникода
+                for (int i = 0; i < 1; i++) //пробегаемся по каждой строке по одному разу
                 {
-                    Array.Reverse(charArray);
-                    bool a = charArray.SequenceEqual(line);
-                    while (a == true)
+                    Array.Reverse(charArray);//изменяем порядок элементов массива Array на обратный и проверяем
+                    bool a = charArray.SequenceEqual(line);//сравнивает последовательности на равенство элементов
+                    while (a == true)//пока последовательности равны выводим строку и слово "YES"
                     {
                         Console.WriteLine(line); 
                         Console.WriteLine("YES");
-                        break;
+                        break;//останавливаем код
                     }
-                    while (a == false)
+                    while (a == false)//пока последовательности не равны выводим строку и слово "NO"
                     {
                         Console.WriteLine(line); 
                         Console.WriteLine("NO");
-                        break;
+                        break;//останавливаем код
                     }
 
                 }

@@ -119,6 +119,7 @@ namespace Task1
                 {
                     if (currentFs.GetType() == typeof(DirectoryInfo))
                     {
+
                         cursor = 0;
                         path = currentFs.FullName;
                     }
