@@ -19,10 +19,10 @@ namespace Task4
 
             string PathString2 = @"C:\Users\user\Desktop\C#"; // путь куда я должен скопировать
 
-            string copyFile = Path.Combine(PathString2, fileName); // скомбинируем путь
-            File.Copy(PathString, copyFile, true); // копируем туда
+            PathString2 = Path.Combine(PathString2, fileName); // скомбинируем путь
+            File.Copy(PathString, PathString2, true); // копируем туда
 
-            File.Delete(PathString); // и удаляем оригинал
+            File.Delete(PathString);  // и удаляем оригинал
         }
     }
 }
