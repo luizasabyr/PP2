@@ -7,15 +7,8 @@ using System.IO;
 
 namespace Task1Part2
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            far FarManager = new far(); //создаем FarManager
-            FarManager.Start(@"C:\Users\user\source\repos\PP2"); //указываем путь
-        }
-    }
-    class far //клас far
+    
+    class far //создаем клас far
     {
         public int cursor;
         public int size;
@@ -65,7 +58,7 @@ namespace Task1Part2
         public void Color(FileSystemInfo file, int index)
         {
             if (index == cursor)
-                Console.BackgroundColor = ConsoleColor.Red;
+                Console.BackgroundColor = ConsoleColor.Gray;
             else if (file.GetType() == typeof(DirectoryInfo))
             {
                 Console.ForegroundColor = ConsoleColor.White;
@@ -157,5 +150,13 @@ namespace Task1Part2
                 }
             }
         }
+        class Program
+    {
+        static void Main(string[] args)
+        {
+            far FarManager = new far(); //создаем FarManager
+            FarManager.Start(@"C:\Users\user\source\repos\PP2"); //указываем путь
+        }
+    }
     }
 }
