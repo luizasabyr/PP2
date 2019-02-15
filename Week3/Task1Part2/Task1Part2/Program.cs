@@ -11,11 +11,11 @@ namespace Task1Part2
     {
         static void Main(string[] args)
         {
-            far FarManager = new far();
-            FarManager.Start(@"C:\Users\user\source\repos\PP2");
+            far FarManager = new far(); //создаем FarManager
+            FarManager.Start(@"C:\Users\user\source\repos\PP2"); //указываем путь
         }
     }
-    class far
+    class far //клас far
     {
         public int cursor;
         public int size;
@@ -25,9 +25,9 @@ namespace Task1Part2
             cursor = 0;
             ok = true;
         }
-        public void Delete(FileSystemInfo fs)
+        public void Delete(FileSystemInfo fs) //удаление файлов командой Delete
         {
-            if (fs.GetType() == typeof(DirectoryInfo))
+            if (fs.GetType() == typeof(DirectoryInfo))  //удалить все содержимое если это папка
                 Directory.Delete(fs.FullName, true);
             else
             {
@@ -35,14 +35,14 @@ namespace Task1Part2
                 fs.Delete();
             }
         }
-        public void TextFile(string path)
+        public void TextFile(string path) //создаем функцию для прочтении файлов
         {
             Console.Clear();
-            StreamReader sr = new StreamReader(path);
+            StreamReader sr = new StreamReader(path); // прочтем содержимое 
             string s = sr.ReadToEnd();
-            Console.WriteLine(s);
+            Console.WriteLine(s); // выводим содержимое в консоли
             ConsoleKeyInfo k = Console.ReadKey();
-            if (k.Key == ConsoleKey.Escape)
+            if (k.Key == ConsoleKey.Escape) //при нажатии Escape должен идти назад
             {
                 sr.Close();
                 return;
@@ -105,14 +105,14 @@ namespace Task1Part2
                 {
                     key = Console.ReadKey();
                     fs = directory.GetFileSystemInfos()[cursor];
-                    if (key.Key == ConsoleKey.Enter)
+                    if (key.Key == ConsoleKey.Enter) //при нажатии enter в папку должен открыть эту папку
                     {
                         if (fs.GetType() == typeof(DirectoryInfo))
                         {
                             cursor = 0;
                             path = fs.FullName;
                         }
-                        else if (fs.Name.EndsWith(".txt"))
+                        else if (fs.Name.EndsWith(".txt")) //а если это текстовый файл то должен открыть его содержимое
                             TextFile(fs.FullName);
 
                     }
@@ -129,7 +129,7 @@ namespace Task1Part2
                         size = files.Length;
                         cursor = 0;
                     }
-                    else if (key.Key == ConsoleKey.N)
+                    else if (key.Key == ConsoleKey.R) //переименование файла либо папки
                     {
                         string s = Console.ReadLine();
                         ConsoleKeyInfo k = Console.ReadKey();
